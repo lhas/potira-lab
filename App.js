@@ -1,19 +1,16 @@
 import React from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import Expo from "expo";
-import {
-  StackNavigator,
-} from 'react-navigation';
+import { DrawerNavigator } from "react-navigation";
 import HomeScreen from './src/screens/Home';
 import TentsScreen from './src/screens/Tents';
+import SideBar from './src/components/support/SideBar';
 
-const RootNavigator = StackNavigator({
-  Home: {
-    screen: HomeScreen
-  },
+const RootNavigator = DrawerNavigator({
+  Home: { screen: HomeScreen },
   Tents: { screen: TentsScreen },
 }, {
-  headerMode: 'none',
+  contentComponent: props => <SideBar {...props} />
 });
 
 export default class App extends React.Component {

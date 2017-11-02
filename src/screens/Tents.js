@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Image, } from 'react-native';
 import LogoIcon from '../assets/logo-icon.png';
 import LogoText from '../assets/logo-text.png';
-import { Container, Content, Text, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Container, Content, Text, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import Header from '../components/support/Header';
 import colors from '../utils/colors';
 
 class Tents extends React.Component {
+
   render() {
     const styles = {
       content: {
@@ -27,18 +29,10 @@ class Tents extends React.Component {
 
     return (
       <Container>
-        <Header rounded style={styles.header}>
-          <Left>
-            <Button transparent>
-              <Icon name='menu' />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Estufas</Title>
-          </Body>
-          <Right>
-          </Right>
-        </Header>
+        <Header
+          title="Estufas"
+          navigation={this.props.navigation}
+        />
         <Content
           style={styles.content}
           contentContainerStyle={styles.contentContainer}
