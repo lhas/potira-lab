@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, Button, Image, } from 'react-native';
+import { View, Image, } from 'react-native';
 import LogoIcon from '../assets/logo-icon.png';
 import LogoText from '../assets/logo-text.png';
+import { Container, Header, Content, Button, Text } from 'native-base';
+import colors from '../utils/colors';
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -13,18 +15,50 @@ class Home extends React.Component {
 
   render() {
     const styles = {
-      container: {
+      content: {
         backgroundColor: '#222',
         flex: 1,
+      },
+      contentContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      logoText: {
+        height: 80,
+      },
+      logoIcon: {
+        width: '60%'
+      },
+      startButton: {
+        alignSelf: 'center',
+        backgroundColor: colors.magenta,
       },
     };
 
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#222'}}>
-        <Image source={LogoText} style={{height: 80}} resizeMode="contain" />
-        <Image source={LogoIcon} style={{width: '60%'}} resizeMode="contain" />
-        <Button title="Iniciar" onPress={this.handleStart} />
-      </View>
+      <Container>
+        <Content
+          style={styles.content}
+          contentContainerStyle={styles.contentContainer}
+          padder>
+          <Image
+            source={LogoText}
+            style={styles.logoText}
+            resizeMode="contain"
+          />
+          <Image
+            source={LogoIcon}
+            style={styles.logoIcon}
+            resizeMode="contain"
+          />
+          <Button
+            onPress={this.handleStart}
+            style={styles.startButton}>
+            <Text>Entrar</Text>
+          </Button>
+        </Content>
+      </Container>
     )
   }
 }

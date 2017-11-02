@@ -1,6 +1,6 @@
 import React from 'react';
-import { StatusBar, } from 'react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import Expo from "expo";
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -16,11 +16,30 @@ const RootNavigator = StackNavigator({
   headerMode: 'none',
 });
 
-const App = () => (
-  <View style={{flex: 1}}>
-    <StatusBar hidden />
-    <RootNavigator />
-  </View>
-);
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isReady: false
+    };
+  }
 
-export default App;
+  async componentWillMount() {
+    await Expo.Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
+    });
+
+    this.setState({ isReady: true });
+  }
+  render() {
+    if (!this.state.isReady) {
+      return <Expo.AppLoading />;
+    }
+    return <View style={{flex: 1}}>
+      <StatusBar hidden />
+      <RootNavigator />
+    </View>;
+  }
+}
